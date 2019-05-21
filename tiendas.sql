@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2019 a las 01:10:39
+-- Tiempo de generación: 22-05-2019 a las 01:20:48
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -76,7 +76,8 @@ INSERT INTO `user` (`id`, `store`, `username`, `password`) VALUES
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `producto unico` (`code`);
+  ADD UNIQUE KEY `producto unico` (`code`),
+  ADD KEY `user` (`user`);
 
 --
 -- Indices de la tabla `user`
@@ -100,6 +101,16 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
