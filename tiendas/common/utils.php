@@ -36,10 +36,19 @@ function getProducts($conn) {
 		return $products;
 }
 
-if ($_SERVER['SCRIPT_NAME'] != '/tiendas/index.php' && $_SERVER['SCRIPT_NAME'] != '/tiendas/php/process_login.php' && $_SERVER['SCRIPT_NAME'] != '/tiendas/php/process_registration.php' && !isset($_SESSION['user'])) {
-	redirect($_SERVER["HTTP_HOST"] . 'tiendas/index.php');
-} elseif( $_SERVER['SCRIPT_NAME'] == '/tiendas/index.php' && isset($_SESSION['user']) ) {
+$public_pages = [
+	'/tiendas/index.php', 
+	'/tiendas/php/process_login.php',
+	'/tiendas/registration.php',
+	'/tiendas/php/process_registration.php'
+];
 
-	redirect($_SERVER["HTTP_HOST"] . 'tiendas/home.php');
+if ( !isset($_SESSION['user']) && !in_array( $_SERVER['SCRIPT_NAME'], $public_pages)) {
+	redirect($_SERVER["HTTP_HOST"] . '/tiendas/index.php');
+} elseif( 
+	isset($_SESSION['user']) && (
+	$_SERVER['SCRIPT_NAME'] == '/tiendas/index.php' || 
+	$_SERVER['SCRIPT_NAME'] == '/tiendas/registration.php')) {
+	redirect($_SERVER["HTTP_HOST"] . '/tiendas/home.php');
 }
 
