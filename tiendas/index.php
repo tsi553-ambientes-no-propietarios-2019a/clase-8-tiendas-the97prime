@@ -1,5 +1,5 @@
 <?php
-include('common/utils.php');
+include('common/utils.php')
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,17 @@ include('common/utils.php');
     <h1>Login</h1>
 
     <form action="php/process_login.php" method="post">
-        <input type="text" name="username" placeholder="Usuario">
-        <input type="password" name="password" placeholder="Clave">
+        <div>
+            <input type="text" name="username" placeholder="Usuario">
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Clave">
+        </div>
+        
         <button>Ingresar</button>
+        
+        <br>
+        <a href="registration.php">Registrame, no tengo usuario :(!</a>
     </form>
 </body>
 </html>
